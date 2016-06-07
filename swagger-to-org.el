@@ -1,4 +1,4 @@
-;;; swagger-to-org --- Convert a swagger.json file into an org-mode file
+;;; swagger-to-org.el --- Convert a swagger.json file into an org-mode file
 
 ;; Copyright (C) 2016  Matthew Carter
 
