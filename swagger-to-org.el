@@ -44,28 +44,6 @@
 (defvar swagger-to-org-headers-list
   (list
    "#+STARTUP: hideall indent hidestars hideblocks"
-   "#+AUTHOR: Matthew Carter"
-   "#+TITLE:  Swagger to Org"
-   "#+EMAIL:  m@ahungry.com"
-   "#+DATE:   <2016-06-06 Mon>"
-   "#+DESCRIPTION: swagger-to-org"
-   "#+KEYWORDS:    swagger-to-org"
-   "#+LANGUAGE:  en"
-   "#+OPTIONS:   H:4 num:t toc:t \\n:nil @:t ::t |:t ^:t -:t f:t *:t <:t"
-   "#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:nil p:t"
-   "#+INFOJS_OPT: view:overview toc:t ltoc:t mouse:underline buttons:nil path:http://orgmode.org/org-info.js"
-   "#+EXPORT_SELECT_TAGS: export"
-   "#+EXPORT_EXCLUDE_TAGS: noexport"
-   "#+LINK_UP:"
-   "#+LINK_HOME:"
-   "#+XSLT:"
-   "#+TODO: TODO IN-PROGRESS TESTING DONE"
-   "#+LATEX_CLASS: article"
-   "#+LATEX_HEADER: \\setlength{\\parindent}{0in}"
-   "#+LATEX_HEADER: \\setlength{\\parskip}{10pt plus 1pt minus 1pt}"
-   "#+LATEX_HEADER: \\usepackage{fancyvrb}"
-   "#+LATEX_HEADER: \\fvset{fontsize=\\scriptsize}"
-   "#+LATEX_HEADER: \\renewcommand{\\chaptername}{Section}"
    )
   "Your custom headers for the output (latex headers etc.).
 Add additional with (add-to-list 'swagger-to-org-headers-list \"#+LATEX_HEADER: whatever...\").")
@@ -75,8 +53,6 @@ Add additional with (add-to-list 'swagger-to-org-headers-list \"#+LATEX_HEADER: 
    "h2 { background: gold; padding:20px;}"
    "h3 { background: yellow; padding: 8px; }"
    "pre { background: #333; color: #fff; font-family:bitstream; }"
-   "</style>"
-   "#+END_HTML"
    )
   "Your custom styles for the output (css styles etc.).
 Add additional with (add-to-list 'swagger-to-org-style-list \"h1 { background: maroon; }\".")
@@ -91,7 +67,7 @@ Add additional with (add-to-list 'swagger-to-org-style-list \"h1 { background: m
      (cl-map
       'nil
       (lambda (method)
-        (princ (format "\n*** %s\n" (upcase (car method))))
+        (princ (upcase (format "\n*** %s\n" (car method))))
         (princ (format "
 #+BEGIN_SRC javascript
 %s
@@ -125,19 +101,19 @@ or you may have issues with the org export features."
 
       ;; Add the special org/latex headers
       (cl-map nil (lambda (header)
-                 (terpri)
-                 (princ header))
-           swagger-to-org-headers-list)
+                    (princ header)
+                    (terpri))
+              swagger-to-org-headers-list)
 
       ;; Add the css styles
-      (princ "#+BEGIN_HTML")
-      (princ "<style type='text/css'>")
+      (princ (format "\n\n#+BEGIN_HTML\n"))
+      (princ (format "\n<style type='text/css'>\n"))
       (cl-map nil (lambda (header)
-                 (terpri)
-                 (princ header))
-           swagger-to-org-style-list)
-      (princ "</style>")
-      (princ "#+END_HTML")
+                    (terpri)
+                    (princ header))
+              swagger-to-org-style-list)
+      (princ (format "\n</style>\n"))
+      (princ (format "\n#+END_HTML\n"))
 
       ;; Add the main swagger contents (path/methods and definitions)
       (swagger-to-org-paths-to-org fn)
