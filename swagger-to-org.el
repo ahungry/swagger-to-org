@@ -4,9 +4,9 @@
 
 ;; Author: Matthew Carter <m@ahungry.com>
 ;; Maintainer: Matthew Carter <m@ahungry.com>
-;; URL: https://github.com/ahungry/dungeon-mode
-;; Version: 0.0.0
-;; Keywords: ahungry emacs geben helm projectile debug
+;; URL: https://github.com/ahungry/swagger-to-org
+;; Version: 0.0.1
+;; Keywords: ahungry emacs swagger openapi orgmode org export
 ;; Package-Requires: ((emacs "24") (cl-lib "0.5") (json "1.4"))
 
 ;; This file is not part of GNU Emacs
