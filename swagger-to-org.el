@@ -5,7 +5,7 @@
 ;; Author: Matthew Carter <m@ahungry.com>
 ;; Maintainer: Matthew Carter <m@ahungry.com>
 ;; URL: https://github.com/ahungry/swagger-to-org
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Keywords: ahungry emacs swagger openapi orgmode org export
 ;; Package-Requires: ((emacs "24") (cl-lib "0.5") (json "1.4"))
 
@@ -32,6 +32,9 @@
 ;; org-mode buffer/file, for easily exporting to additional formats.
 
 ;;; News:
+
+;;;; Changes since 0.0.1:
+;; - Added an autoload line for the interactive export function
 
 ;;;; Changes since 0.0.0:
 ;; - Created the project
@@ -123,10 +126,12 @@ or you may have issues with the org export features."
   (write-file "/tmp/swagger-to-org.org")
   (org-mode))
 
+;;;###autoload
 (defun swagger-to-org-from-file-name (fn)
   "Generate the org output from an input swagger file, given FN for the file name."
   (interactive "sPlease input the full path to the swagger.json file: ")
   (swagger-to-org-from-file fn))
 
 (provide 'swagger-to-org)
+
 ;;; swagger-to-org.el ends here
